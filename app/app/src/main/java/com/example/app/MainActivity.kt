@@ -93,7 +93,7 @@ fun Cadastro(viewModel: PessoaViewModel, mainActivity: MainActivity) {
 
     Column(modifier = Modifier.background(color = Color.White)) {
         Row {
-            Spacer(modifier = Modifier.height(60.dp))
+            Spacer(modifier = Modifier.height(70.dp))
         }
 
         Row(horizontalArrangement = Arrangement.Center, modifier = Modifier.fillMaxWidth()) {
@@ -108,7 +108,7 @@ fun Cadastro(viewModel: PessoaViewModel, mainActivity: MainActivity) {
 
         Spacer(modifier = Modifier.height(30.dp))
         Row(horizontalArrangement = Arrangement.Center, modifier = Modifier.fillMaxWidth()) {
-            TextField(value = nome, onValueChange = { nome = it }, label = { Text("Nome:") })
+            TextField(value = nome, onValueChange = { nome = it }, label = { Text("Nome:", ) })
         }
 
         Spacer(modifier = Modifier.height(30.dp))
@@ -128,6 +128,19 @@ fun Cadastro(viewModel: PessoaViewModel, mainActivity: MainActivity) {
         }
         Spacer(modifier = Modifier.height(20.dp))
         Divider()
+        if (pessoaList.isNotEmpty()) {
+            Spacer(modifier = Modifier.height(20.dp))
+            Row(horizontalArrangement = Arrangement.Center, modifier = Modifier.fillMaxWidth()) {
+                Text(
+                    text = "Cadastros existentes:",
+                    textAlign = TextAlign.Center,
+                    fontWeight = FontWeight.Bold,
+                    fontSize = 20.sp,
+                    color = Color(27, 47, 255, 175)
+                )
+            }
+            Spacer(modifier = Modifier.height(10.dp)) // Opcional: espaço entre a mensagem e a lista
+        }
         LazyColumn {
             items(pessoaList) { pessoa ->
                 Row(
@@ -142,7 +155,7 @@ fun Cadastro(viewModel: PessoaViewModel, mainActivity: MainActivity) {
                             .padding(end = 8.dp), // Margem à direita
                         Arrangement.Center
                     ) {
-                        Text(text = "${pessoa.nome}", textAlign = TextAlign.Center, color = Color(27, 47, 255, 175)) // Centraliza o texto
+                        Text(text = "${pessoa.nome}", textAlign = TextAlign.Center, color = Color.Gray) // Centraliza o texto
                     }
 
                     Column(
@@ -151,7 +164,7 @@ fun Cadastro(viewModel: PessoaViewModel, mainActivity: MainActivity) {
                             .padding(end = 15.dp), // Margem à direita
                         Arrangement.Center
                     ) {
-                        Text(text = "${pessoa.telefone}", textAlign = TextAlign.Center, color = Color(27, 47, 255, 175)) // Centraliza o texto
+                        Text(text = "${pessoa.telefone}", textAlign = TextAlign.Center, color = Color.Gray) // Centraliza o texto
                     }
 
                     Button(
@@ -163,7 +176,6 @@ fun Cadastro(viewModel: PessoaViewModel, mainActivity: MainActivity) {
                         Text(text = "Deletar", color = Color.White, fontSize = 17.sp)
                     }
                 }
-                Divider()
             }
         }
 
